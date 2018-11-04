@@ -20,8 +20,14 @@ namespace Karmin.Controllers
         [HttpPost]
         public ActionResult ScheduleNotification(NotificationSchedulerItem item)
         {
-            BackgroundJob.Schedule(() => Console.WriteLine("IT WORKED " + item.data), TimeSpan.FromSeconds(10));
+            BackgroundJob.Schedule(() => SendNotificationAsync(item), TimeSpan.FromSeconds(item.Time));
             return Content("Scheduled notification");
+        }
+
+        public async Task SendNotificationAsync(NotificationSchedulerItem item)
+        {
+            var alert = "{\"aps\":{\"alert\":\"" + "Reminder: " + item.Data + "\",\"sound\":\"default\"}}";
+            await Program.NotificationClient.SendAppleNativeNotificationAsync(alert);
         }
     }
 }

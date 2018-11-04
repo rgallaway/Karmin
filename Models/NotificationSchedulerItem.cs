@@ -2,7 +2,8 @@ namespace Karmin.Models
 {
     public class NotificationSchedulerItem
     {
-        public string data { get; set; }
-        public string type { get; set; }
+        public string Data { get; set; }
+        public string Type { get; set; }
+        public int Time { get; set; }
     }
 }

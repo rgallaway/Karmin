@@ -45,14 +45,14 @@ namespace Karmin.Models
     public class EmotionsItem
     {
         public int Eindex { get; set; }
-        public int Happiness { get; set; }
-        public int Surprise { get; set; }
-        public int Calm { get; set; }
-        public int Fear { get; set; }
-        public int Sadness { get; set; }
-        public int Anger { get; set; }
-        public int Disgust { get; set; }
-        public int EmotionalIntensityRate { get; set; }
+        public double Happiness { get; set; }
+        public double Surprise { get; set; }
+        public double Calm { get; set; }
+        public double Fear { get; set; }
+        public double Sadness { get; set; }
+        public double Anger { get; set; }
+        public double Disgust { get; set; }
+        public double EmotionalIntensityRate { get; set; }
         public List<string> Sentences { get; set; }
         public List<List<object>> StrongestEmotionBySentence { get; set; }
     }

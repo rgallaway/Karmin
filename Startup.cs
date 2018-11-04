@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Hangfire;
+using Karmin.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,6 +28,7 @@ namespace Karmin
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddHangfire(x => x.UseSqlServerStorage(Constants.SqlConnString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +43,8 @@ namespace Karmin
                 app.UseHsts();
             }
 
+            app.UseHangfireDashboard();
+            app.UseHangfireServer();
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseMvc();

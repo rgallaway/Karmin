@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Azure.NotificationHubs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -40,6 +41,20 @@ namespace Karmin
                     mQemotionClient.DefaultRequestHeaders.Add("X-Mashape-Key", Constants.MashapeKey);
                 }
                 return mQemotionClient;
+            }
+        }
+
+        private static NotificationHubClient mNotificationClient;
+        public static NotificationHubClient NotificationClient
+        {
+            get
+            {
+                if (mNotificationClient == null)
+                {
+                    mNotificationClient = NotificationHubClient
+                        .CreateClientFromConnectionString(Constants.NotifHubAccessString, Constants.NotifHubName);
+                }
+                return mNotificationClient;
             }
         }
 

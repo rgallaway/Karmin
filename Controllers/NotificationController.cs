@@ -26,7 +26,8 @@ namespace Karmin.Controllers
 
         public async Task SendNotificationAsync(NotificationSchedulerItem item)
         {
-            var alert = "{\"aps\":{\"alert\":\"" + "Reminder: " + item.Data + "\",\"sound\":\"default\"}}";
+            var text = "Hi " + item.Name + ", have you remembered to " + item.Reminder + "?";
+            var alert = "{\"aps\":{\"alert\":\"" + text + "\",\"sound\":\"default\"}}";
             await Program.NotificationClient.SendAppleNativeNotificationAsync(alert);
         }
     }
